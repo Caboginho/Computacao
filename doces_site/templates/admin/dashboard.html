@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Painel Administrativo</h2>
+<p>Olá, {{ nome }}</p>
+<p>Total de produtos: {{ total_produtos }}</p>
+<p>Total de pedidos: {{ total_pedidos }}</p>
+<nav>
+    <a href="{{ url_for('gerenciar_produtos') }}">Gerenciar Produtos</a> |
+    <a href="{{ url_for('gerenciar_vendas') }}">Gerenciar Vendas</a> |
+    <a href="{{ url_for('historico') }}">Histórico</a>
+</nav>
+{% endblock %}
