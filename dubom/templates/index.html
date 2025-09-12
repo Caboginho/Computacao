@@ -7,9 +7,9 @@
   </div>
 </div>
 
-<div class="row" id="products-container" style="padding-bottom:10vh;">
+<div class="row g-3" id="products-container" style="padding-bottom:10vh;">
 {% for p in products %}
-  <div class="col-md-4 mb-3">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
     <div class="card product-card" data-id="{{p.id}}" style="cursor:pointer;">
       <img src="{{p.image}}" class="card-img-top">
       <div class="card-body">
@@ -32,6 +32,7 @@
 </div>
 
 <script>
+// Script de seleção/desseleção e atualização do orçamento
 const selectedProducts = {};
 
 function updateBudget() {

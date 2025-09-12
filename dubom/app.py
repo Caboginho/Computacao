@@ -174,12 +174,12 @@ def admin_products():
 def create_product():
     data = request.form
     p = Product(
-        name=data.get('name'),
-        price=float(data.get('price') or 0),
-        description=data.get('description'),
-        image=data.get('image'),
-        marketplace_shopee=data.get('marketplace_shopee'),
-        marketplace_mercadolivre=data.get('marketplace_mercadolivre'),
+        name=data.get('name'), # type: ignore
+        price=float(data.get('price') or 0), # type: ignore
+        description=data.get('description'), # pyright: ignore[reportCallIssue]
+        image=data.get('image'), # type: ignore
+        marketplace_shopee=data.get('marketplace_shopee'), # type: ignore
+        marketplace_mercadolivre=data.get('marketplace_mercadolivre'), # type: ignore
     )
     db.session.add(p); db.session.commit()
     return redirect(url_for('admin_products'))
@@ -227,7 +227,7 @@ def admin_dashboard():
                 prod_counts[pid] = prod_counts.get(pid,0) + qty
         except: pass
     top = sorted(prod_counts.items(), key=lambda x: x[1], reverse=True)[:10]
-    top_products = [{'product': Product.query.get(pid).name if Product.query.get(pid) else '—', 'qty': qty} for pid, qty in top]
+    top_products = [{'product': Product.query.get(pid).name if Product.query.get(pid) else '—', 'qty': qty} for pid, qty in top] # type: ignore
     logs = AccessLog.query.order_by(AccessLog.created_at.desc()).limit(200).all()
     return render_template('admin/dashboard.html', orders=total_orders, customers=total_customers, revenue=revenue, top_products=top_products, logs=logs)
 
@@ -235,11 +235,14 @@ def admin_dashboard():
 @admin_required
 def delete_product(pid):
     p = Product.query.get_or_404(pid)
-    db.session.delete(p)
-    db.session.commit()
-    flash(f'Produto "{p.name}" deletado com sucesso.', 'success')
+    try:
+        db.session.delete(p)
+        db.session.commit()
+        flash(f'Produto "{p.name}" deletado com sucesso.', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Erro ao deletar produto: {e}', 'danger')
     return redirect(url_for('admin_products'))
-
 
 if __name__ == '__main__':
     # ensure tables exist on startup (Flask 3 compatibility)
