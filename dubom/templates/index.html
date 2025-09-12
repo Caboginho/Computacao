@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Doces artesanais Dubom</h1>
+    <p class="col-md-8 fs-4">Tradição, carinho e sabor em cada doce.</p>
+  </div>
+</div>
+
+<div class="row" id="products-container" style="padding-bottom:10vh;">
+{% for p in products %}
+  <div class="col-md-4 mb-3">
+    <div class="card product-card" data-id="{{p.id}}" style="cursor:pointer;">
+      <img src="{{p.image}}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{p.name}}</h5>
+        <p class="card-text">{{p.description}}</p>
+        <p class="card-text">R$ <span class="price">{{'%.2f'|format(p.price)}}</span></p>
+        <div class="input-group mb-2">
+          <label class="input-group-text">Qtd</label>
+          <input type="number" class="form-control qty-input" value="1" min="1">
+        </div>
+        <a href="/product/{{p.id}}" class="btn btn-sm btn-primary">Ver item</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<div class="fixed-bottom bg-dark text-white p-2 d-flex justify-content-center align-items-center" style="height:10vh;">
+  <strong>Orçamento total: R$ <span id="budget-total">0.00</span></strong>
+</div>
+
+<script>
+const selectedProducts = {};
+
+function updateBudget() {
+  let total = 0;
+  for (let key in selectedProducts) {
+    let item = selectedProducts[key];
+    total += item.price * item.qty;
+  }
+  document.getElementById('budget-total').innerText = total.toFixed(2);
+}
+
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if(e.target.classList.contains('qty-input') || e.target.tagName === 'A') return;
+    const id = card.dataset.id;
+    const price = parseFloat(card.querySelector('.price').innerText);
+    const qtyInput = card.querySelector('.qty-input');
+    const qty = parseInt(qtyInput.value) || 1;
+
+    if(selectedProducts[id]) {
+      delete selectedProducts[id];
+      card.classList.remove('border-success');
+    } else {
+      selectedProducts[id] = {price, qty};
+      card.classList.add('border-success');
+    }
+    updateBudget();
+  });
+
+  const qtyInput = card.querySelector('.qty-input');
+  qtyInput.addEventListener('input', function(e) {
+    const id = card.dataset.id;
+    const val = parseInt(qtyInput.value);
+    if(val <= 0) qtyInput.value = 1;
+    if(selectedProducts[id]) {
+      selectedProducts[id].qty = parseInt(qtyInput.value);
+      updateBudget();
+    }
+  });
+});
+</script>
+{% endblock %}

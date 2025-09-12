@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{product.name}}</h2>
+<img src="{{product.image}}" class="img-fluid">
+<p>{{product.description}}</p>
+<p><strong>R$ {{'%.2f'|format(product.price)}}</strong></p>
+{% if product.marketplace_shopee %}
+<p><a href="{{product.marketplace_shopee}}" target="_blank">Comprar na Shopee</a></p>
+{% endif %}
+{% if product.marketplace_mercadolivre %}
+<p><a href="{{product.marketplace_mercadolivre}}" target="_blank">Comprar no MercadoLivre</a></p>
+{% endif %}
+{% endblock %}

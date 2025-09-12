@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Dashboard</h3>
+<p>Pedidos: {{orders}}, Clientes: {{customers}}, Receita: R$ {{'%.2f'|format(revenue)}}</p>
+<h4>Top produtos</h4>
+<ul>{% for t in top_products %}<li>{{t.product}} - {{t.qty}}</li>{% endfor %}</ul>
+<h4>Logs recentes</h4>
+<ul>{% for l in logs %}<li>{{l.created_at}} - {{l.ip}} - {{l.path}} - {{l.location}}</li>{% endfor %}</ul>
+{% endblock %}

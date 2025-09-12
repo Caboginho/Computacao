@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Produtos</h3>
+  <a href="/admin/dashboard" class="btn btn-secondary">Dashboard</a>
+</div>
+<form method="post" action="/admin/products/create" class="mb-4">
+  <div class="row g-2">
+    <div class="col-md-4"><input name="name" class="form-control" placeholder="Nome" required></div>
+    <div class="col-md-2"><input name="price" class="form-control" placeholder="Preço" required></div>
+    <div class="col-md-3"><input name="image" class="form-control" placeholder="URL da imagem"></div>
+    <div class="col-md-3"><input name="marketplace_shopee" class="form-control" placeholder="URL Shopee"></div>
+    <div class="col-md-6 mt-2"><input name="marketplace_mercadolivre" class="form-control" placeholder="URL MercadoLivre"></div>
+    <div class="col-md-12 mt-2"><textarea name="description" class="form-control" placeholder="Descrição"></textarea></div>
+    <div class="col-md-12 mt-2"><button class="btn btn-success">Adicionar produto</button></div>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead><tr><th>ID</th><th>Nome</th><th>Preço</th><th>Descrição</th><th>Imagem</th><th>Shopee</th><th>MercadoLivre</th><th>Ações</th></tr></thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <form method="post" action="/admin/products/update/{{p.id}}">
+      <td>{{p.id}}</td>
+      <td><input name="name" class="form-control" value="{{p.name}}"></td>
+      <td style="max-width:120px;"><input name="price" class="form-control" value="{{'%.2f'|format(p.price)}}"></td>
+      <td><textarea name="description" class="form-control">{{p.description or ''}}</textarea></td>
+      <td><input name="image" class="form-control" value="{{p.image or ''}}"></td>
+      <td><input name="marketplace_shopee" class="form-control" value="{{p.marketplace_shopee or ''}}"></td>
+      <td><input name="marketplace_mercadolivre" class="form-control" value="{{p.marketplace_mercadolivre or ''}}"></td>
+      <td class="d-flex gap-1">
+        <button class="btn btn-sm btn-primary">Salvar</button>
+        <a class="btn btn-sm btn-outline-secondary" href="/product/{{p.id}}" target="_blank">Ver</a>
+        <form method="post" action="/admin/products/delete/{{p.id}}" style="display:inline" onsubmit="return confirm('Deseja realmente deletar este produto?');">
+          <button class="btn btn-sm btn-danger">Deletar</button>
+        </form>
+      </td>
+      </form>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
