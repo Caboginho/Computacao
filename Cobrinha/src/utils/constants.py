@@ -1,0 +1,32 @@
+# src/utils/constants.py
+
+LARGURA = 600
+ALTURA = 500
+TAMANHO_BLOCO = 20
+AREA_JOGO_ALTURA = 450
+FPS_NORMAL = 8
+FPS_RAPIDO = 15
+
+# Cores
+PRETO = (0, 0, 0)
+BRANCO = (255, 255, 255)
+VERDE = (0, 200, 0)
+VERDE_ESCURO = (0, 150, 0)
+VERDE_GRADIENTE = [(0, 255, 0), (0, 220, 0), (0, 190, 0)]
+VERMELHO = (200, 0, 0)
+CINZA = (50, 50, 50)
+AZUL = (0, 100, 255)
+AMARELO = (255, 255, 0)
+DOURADO = (255, 215, 0)
+FUNDO_VITORIA = (50, 0, 50)
+FUNDO_GAMEOVER = (50, 0, 0)
+BRILHO_COMIDA = (255, 50, 50)
+BRILHO_VIDA = (50, 50, 255)
+
+SCORE_FILE_PATH = "src/data/snake_scores.json"
+
+# Direções
+UP = [0, -1]
+DOWN = [0, 1]
+LEFT = [-1, 0]
+RIGHT = [1, 0]
