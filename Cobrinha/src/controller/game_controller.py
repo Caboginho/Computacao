@@ -14,8 +14,9 @@ from view.sound_manager import SoundManager
 from utils.constants import *
 
 class GameController:
-    def __init__(self, screen):
-        self.screen = screen
+    def __init__(self, tela,sound_manager):
+        self.screen = tela
+        self.sound_manager = sound_manager
         self.clock = pygame.time.Clock()
         self.score_manager = ScoreManager()
         self.sound_manager = SoundManager()
@@ -27,7 +28,7 @@ class GameController:
         self.score_max = (LARGURA//TAMANHO_BLOCO) * (AREA_JOGO_ALTURA//TAMANHO_BLOCO) - 1
         self.direcao = UP
         self.tempo_inicio = time.time()
-        self.view = GameView(screen, pygame.font.SysFont(None, 30), controller=self)
+        self.view = GameView(tela, pygame.font.SysFont(None, 30), controller=self)
         self.particulas = []
         self.game_over = False
         self.vitoria = False

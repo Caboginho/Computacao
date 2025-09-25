@@ -1,68 +1,83 @@
 # Computação - Projetos e Estrutura
 
-Este repositório contém diversos projetos de programação desenvolvidos para estudos e demonstração de conceitos em diferentes linguagens. Abaixo está a descrição de cada pasta/projeto presente:
+Este repositório reúne projetos de programação desenvolvidos para fins de estudo, prática e demonstração de conceitos em diferentes linguagens e frameworks. Cada pasta representa um projeto independente, com seu próprio contexto e tecnologias utilizadas.
 
 ---
 
-## **cobrinha/**
-Jogo da cobrinha (Snake) implementado em Python usando a biblioteca Pygame.
+## Projetos
 
-- **Snake.py**: Código-fonte principal do jogo. Permite jogar Snake com controles via teclado (WASD), placar e tela de game over.
+### **cobrinha/**
+Jogo da cobrinha (Snake) desenvolvido em Python utilizando a biblioteca Pygame.
+
+- **Snake.py**: Código-fonte principal do jogo. Permite jogar com controles via teclado, exibe placar e tela de game over.
 
 ---
 
-## **damas/**
+### **damas/**
 Jogo de Damas (Checkers) implementado em Java com interface gráfica Swing.
 
-- **CheckersGame.java**: Código-fonte principal do jogo de damas.
-- **CheckersGame.class** e outros `.class`: Arquivos compilados Java.
-- Permite jogar com mouse ou entrada de coordenadas, placar e detecção de vitória/empate.
+- **CheckersGame.java**: Código-fonte principal do jogo.
+- **Arquivos `.class`**: Versões compiladas do código.
+- Permite jogar com mouse ou coordenadas, possui placar e detecção de vitória/empate.
 
 ---
 
-## **dubom/**
+### **dubom/**
 Aplicação web MVP para venda de doces artesanais, desenvolvida em Python com Flask.
 
 - **app.py**: Aplicação principal Flask.
-- **models.py**: Definição dos modelos/tabelas do banco de dados (SQLAlchemy).
-- **Dockerfile** e **docker-compose.yml**: Permitem rodar a aplicação em containers Docker.
+- **models.py**: Modelos/tabelas do banco de dados (SQLAlchemy).
+- **Dockerfile** e **docker-compose.yml**: Suporte a containers Docker.
 - **requirements.txt**: Dependências do projeto.
-- **ngrok.exe**: Ferramenta para expor localmente a aplicação na internet.
+- **ngrok.exe**: Ferramenta para expor a aplicação localmente.
 - **.env.example**: Exemplo de variáveis de ambiente.
-- **README.md**: Instruções detalhadas de uso do projeto Dubom.
 - **static/**: Arquivos estáticos (CSS, imagens, etc).
-- **templates/**: Templates HTML Jinja2 para as páginas do site.
-- **instance/** e **__pycache__/**: Pastas internas do Flask e arquivos compilados Python.
+- **templates/**: Templates HTML para as páginas do site.
 
 ---
 
-## **JogoVelha/**
+### **doces_site_01/**
+Projeto web para gestão e venda de doces, desenvolvido em Flask, com arquitetura modular.
+
+- **app.py**: Arquivo principal da aplicação Flask.
+- **config.py**: Configurações do projeto (banco de dados SQLite, preparado para MySQL futuramente).
+- **models/**: Definição das tabelas do banco de dados (SQLAlchemy).
+  - **produto.py, usuario.py, pedido.py**: Modelos das tabelas.
+- **services/**: Regras de negócio e operações CRUD.
+  - **produto_service.py, usuario_service.py**: Lógica de produtos e usuários.
+- **routes/**: Blueprints para organização das rotas.
+  - **cliente.py, admin.py**: Rotas para clientes e administração.
+- **templates/**: Templates HTML para as páginas do site.
+- **static/**: Arquivos estáticos (CSS, imagens, JS, etc).
+
+---
+
+### **JogoVelha/**
 Jogo da Velha (Tic-Tac-Toe) implementado em C++ com interface gráfica usando OpenGL/GLUT.
 
 - **velhavelha.cpp**: Código-fonte principal do jogo.
-- **velhavelha.exe**: Executável gerado para Windows.
-- Permite jogar com mouse ou teclado, placar e reinício de partidas.
+- **velhavelha.exe**: Executável para Windows.
+- Permite jogar com mouse ou teclado, exibe placar e permite reiniciar partidas.
 
 ---
 
-## **.vscode/**
+### **.vscode/**
 Configurações do Visual Studio Code para facilitar o desenvolvimento e depuração dos projetos.
 
-- **c_cpp_properties.json**: Configurações de compilador C/C++.
-- **launch.json**: Configurações de depuração.
-- **settings.json**: Preferências do editor.
-- **tasks.json**: Tarefas automatizadas de build.
+- **c_cpp_properties.json, launch.json, settings.json, tasks.json**: Arquivos de configuração do editor.
 
 ---
 
-## **Outros arquivos**
+## Outros arquivos
+
 - **.gitignore**: Arquivos e pastas ignorados pelo Git.
 
 ---
 
 ## Observações
 
-- Cada projeto é independente e pode ser executado separadamente conforme as instruções em seus respectivos arquivos README ou comentários no código.
-- Para rodar os projetos, verifique as dependências necessárias (Python, Java, C++, bibliotecas específicas, etc).
+- Cada projeto pode ser executado separadamente conforme instruções em seus próprios arquivos README ou comentários no código.
+- Verifique as dependências necessárias (Python, Java, C++, bibliotecas, etc) antes de executar cada projeto.
+- Sinta-se à vontade para explorar, modificar e contribuir com os projetos deste repositório!
 
 ---
