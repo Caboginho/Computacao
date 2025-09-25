@@ -61,19 +61,6 @@ Jogo da Velha (Tic-Tac-Toe) implementado em C++ com interface gráfica usando Op
 
 ---
 
-### **.vscode/**
-Configurações do Visual Studio Code para facilitar o desenvolvimento e depuração dos projetos.
-
-- **c_cpp_properties.json, launch.json, settings.json, tasks.json**: Arquivos de configuração do editor.
-
----
-
-## Outros arquivos
-
-- **.gitignore**: Arquivos e pastas ignorados pelo Git.
-
----
-
 ## Observações
 
 - Cada projeto pode ser executado separadamente conforme instruções em seus próprios arquivos README ou comentários no código.
